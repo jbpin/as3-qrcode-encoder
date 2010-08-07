@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component:QRGenerator label="Email" xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:component="org.jbpin.qrcodegen.component.*">
+	<mx:Script>
+		<![CDATA[
+			
+			protected function onGenerate():void{
+				this.stToEncode = "SMTP:"+txtTo.text+":"+txtSubject.text+":"+txtContent.text;
+				this.generate();
+			}
+		]]>
+	</mx:Script>
+	<mx:Form width="100%">
+		<mx:FormHeading label="Generate a QRCode with an email"/>
+		<mx:FormItem label="To"  width="100%">
+			<mx:TextInput id="txtTo" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Subject"  width="100%">
+			<mx:TextInput id="txtSubject" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Body"  width="100%" height="100" clipContent="true">
+			<mx:TextArea id="txtContent" width="100%" height="100%"/>
+		</mx:FormItem>
+		<mx:Button label="Generate" click="onGenerate()" />
+	</mx:Form>
+</component:QRGenerator>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component:QRGenerator label="vCard" xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:component="org.jbpin.qrcodegen.component.*">
+	<mx:Script>
+		<![CDATA[
+						
+			protected function onGenerate():void{
+				this.stToEncode = "BEGIN:VCARD \n";
+				if(txtFName.text != "" || txtLName.text != ""){
+					stToEncode += "N:"+txtLName.text+";"+txtFName.text+" \n";
+				}
+				if(txtMobile.text != ""){
+					stToEncode += "TEL;CELL;VOICE:"+txtMobile.text+" \n";
+				}
+				if(txtHome.text != ""){
+					stToEncode += "TEL;HOME;VOICE:"+txtHome.text+" \n";
+				}
+				if(txtAddress.text != "" || txtCountry.text != "" || txtZip.text != "" || txtCity.text != ""){
+					stToEncode += "ADR;HOME:;;"+txtAddress.text+";;"+txtCity.text+";"+txtZip.text+";"+txtCountry.text+" \n";
+				}
+				if(txtEmail.text != ""){
+					stToEncode += "EMAIL;PREF;INTERNET:"+txtEmail.text+" \n";
+				}
+				if(txtWeb.text != ""){
+					stToEncode += "URL:"+txtWeb.text+" \n";
+				}
+				stToEncode += "END:VCARD";
+				this.generate();
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:Form width="100%">
+		<mx:FormHeading label="Generate a QRCode with a vCard"/>
+		<mx:FormItem label="Firstname"  width="100%">
+			<mx:TextInput id="txtFName" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Lastname"  width="100%">
+			<mx:TextInput id="txtLName" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Mobile"  width="100%">
+			<mx:TextInput id="txtMobile" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Home"  width="100%">
+			<mx:TextInput id="txtHome" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Email"  width="100%">
+			<mx:TextInput id="txtEmail" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Address"  width="100%" height="100" clipContent="true">
+			<mx:TextArea id="txtAddress" width="100%" height="100%"/>
+		</mx:FormItem>
+		<mx:FormItem label="City"  width="100%">
+			<mx:TextInput id="txtCity" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Zip"  width="100%">
+			<mx:TextInput id="txtZip" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Country"  width="100%">
+			<mx:TextInput id="txtCountry" width="100%"  />
+		</mx:FormItem>
+		<mx:FormItem label="Web"  width="100%">
+			<mx:TextInput id="txtWeb" width="100%"  />
+		</mx:FormItem>
+		<mx:Button label="Generate" click="onGenerate()" />
+	</mx:Form>
+</component:QRGenerator>

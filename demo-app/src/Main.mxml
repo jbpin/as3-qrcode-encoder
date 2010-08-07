@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="955" minHeight="600" xmlns:component="org.jbpin.qrcodegen.component.*">
+	<mx:Script>
+		<![CDATA[
+			import org.jbpin.qrcodegen.component.QRGenerator;
+			import org.qrcode.QRCode;
+			
+			private var qrEncode:org.qrcode.QRCode = new QRCode();
+			
+			[Bindable]
+			private var img:Bitmap;
+			
+			protected function onGenerate(e:Event):void{
+				var generator:QRGenerator = e.currentTarget as QRGenerator;
+				qrEncode.encode(generator.stToEncode);
+				img = new Bitmap(qrEncode.bitmapData);
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:TabNavigator x="0" y="0" width="60%" height="100%">
+		<component:TextGenerator generate="onGenerate(event)" />
+		<component:LinkGenerator generate="onGenerate(event)"/>
+		<component:SMSGenerator generate="onGenerate(event)"/>
+		<component:EmailGenerator generate="onGenerate(event)"/>
+		<component:VCardGenerator generate="onGenerate(event)"/>
+	</mx:TabNavigator>
+	<mx:Canvas width="40%" height="100%" right="0">
+		<mx:Image verticalCenter="0" horizontalCenter="0" id="qrImage" source="{img}"/>
+	</mx:Canvas>
+</mx:Application>

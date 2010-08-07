@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component:QRGenerator label="Link" xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:component="org.jbpin.qrcodegen.component.*">
+	<mx:Script>
+		<![CDATA[
+			
+			protected function onGenerate():void{
+				this.stToEncode = "http://"+txtText.text;
+				this.generate();
+			}
+		]]>
+	</mx:Script>
+	<mx:Form width="100%">
+		<mx:FormHeading label="Generate a QRCode with a link"/>
+		<mx:FormItem label="http://" width="100%">
+			<mx:TextInput id="txtText" width="100%"  />
+		</mx:FormItem>
+		<mx:Button label="Generate" click="onGenerate()" />
+	</mx:Form>
+</component:QRGenerator>
