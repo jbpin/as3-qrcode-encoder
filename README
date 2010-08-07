@@ -1,7 +1,12 @@
 AS3 QR Code encoder is an adaptation of qrencode open source C library to as3 language. This library allow you to generate a qr code from your application (Flex, Flash, AIR) on offline mode.
+
 How to use it ?
-var qr:QRCode = new QRCode(StringToEncode, EncodeType, ErrorLevel);
+
+var qr:QRCode = new QRCode();
+qr.encode("String to encode");
 var bitMap:Bitmap = new Bitmap(qr.bitmapData);
+
 That is just the first version of the library, I will try to optimize it and fixing some problem soon as possible..
 The choice to just provide a bitmap data object has been made to allow you to display the qrcode or to encoding it and save it to a png or jpeg file.
+
 The project is under MIT License. 
