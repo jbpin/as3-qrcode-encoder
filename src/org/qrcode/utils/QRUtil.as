@@ -1,8 +1,6 @@
 package org.qrcode.utils
 {
 	
-	import com.adobe.utils.ArrayUtil;
-	
 	import org.qrcode.rs.QRRsItem;
 
 	public class QRUtil
@@ -27,7 +25,7 @@ package org.qrcode.utils
 			var ar:Array = new Array();
 			for(var i:int = 0; i<length;i++){
 				if(value is Array){
-					ar[startIndex+i] = ArrayUtil.copyArray(value as Array); 	
+					ar[startIndex+i] = copyArray(value as Array); 	
 				}else{
 					ar[startIndex+i] = value;
 				}
@@ -45,9 +43,17 @@ package org.qrcode.utils
 		public static function copyFrame(f:Array):Array{
 			var d:Array = new Array();
 			for(var a:String in f){
-				d[a] = ArrayUtil.copyArray(f[a]);
+				d[a] = QRUtil.copyArray(f[a]);
 			}
 			return d;
+		}
+		
+		public static function copyArray(a:Array):Array{
+			var ar:Array = new Array();
+			for each(var obj:* in a){
+				ar.push(obj);
+			}
+			return ar;
 		}
 		
 		

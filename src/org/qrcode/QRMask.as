@@ -1,7 +1,5 @@
 package org.qrcode
 {
-	import com.adobe.utils.ArrayUtil;
-	
 	import org.qrcode.specs.QRSpecs;
 	import org.qrcode.utils.QRUtil;
 
@@ -18,7 +16,7 @@ package org.qrcode
 		
 		public function QRMask(frame:Array)
 		{
-			this.frames = ArrayUtil.copyArray(frame);
+			this.frames = QRUtil.copyArray(frame);
 			
 		}
 		
@@ -253,7 +251,7 @@ package org.qrcode
 			var checked_masks:Array = [0,2,3,4,5,6,7];
 			
 			
-			bestMask = ArrayUtil.copyArray(frames);
+			bestMask = QRUtil.copyArray(frames);
 			
 			for each(var i:int in checked_masks) {
 				var demerit:int = 0;
