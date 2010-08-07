@@ -18,7 +18,6 @@ package org.qrencode.utils
 			return frame;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function dumpMask(frame:Array):String
 		{
 			var st:String = ''; 

@@ -61,7 +61,6 @@ package org.qrencode
 			this.data = QRCodeTool.binarize(ar);
 		}
 		
-		//----------------------------------------------------------------------
 		public function encodeMask(input:QRInput,mask:int):QRCode
 		{
 			if(input.version < 0 || input.version > QRSpecs.QRSPEC_VERSION_MAX) {

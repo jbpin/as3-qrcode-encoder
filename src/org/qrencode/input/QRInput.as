@@ -15,7 +15,6 @@ package org.qrencode.input
 		private var _version:int;
 		private var _level:int;
 		
-		//----------------------------------------------------------------------
 		public function QRInput(qrversion:int = 0, qrlevel:int = QRCodeErrorLevel.QRCODE_ERROR_LEVEL_LOW)
 		{
 			if (qrversion < 0 || qrversion > QRSpecs.QRSPEC_VERSION_MAX || qrlevel > QRCodeErrorLevel.QRCODE_ERROR_LEVEL_HIGH) {
@@ -27,13 +26,11 @@ package org.qrencode.input
 			this._level = qrlevel;
 		}
 		
-		//----------------------------------------------------------------------
 		public function get version():int
 		{
 			return this._version;
 		}
 		
-		//----------------------------------------------------------------------
 		public function set version(value:int):void
 		{
 			if(value < 0 || value > QRSpecs.QRSPEC_VERSION_MAX) {
@@ -43,12 +40,10 @@ package org.qrencode.input
 			this._version = value;
 		}
 		
-		//----------------------------------------------------------------------
 		public function get errorCorrectionLevel():int{
 			return this._level;
 		}
 		
-		//----------------------------------------------------------------------
 		public function set errorCorrectionLevel(value:int):void
 		{
 			if(value > QRCodeErrorLevel.QRCODE_ERROR_LEVEL_HIGH) {
@@ -59,13 +54,11 @@ package org.qrencode.input
 			
 		}
 		
-		//----------------------------------------------------------------------
 		public function appendEntry(entry:QRInputItem):void
 		{
 			this.items.addItem(entry);
 		}
 		
-		//----------------------------------------------------------------------
 		public function append(mode:int, size:int, data:Array):int
 		{
 			try {
@@ -77,8 +70,6 @@ package org.qrencode.input
 			}
 			return 0;
 		}
-		
-		//----------------------------------------------------------------------
 		
 		public function insertStructuredAppendHeader(size:int, index:int, parity:int):int
 		{
@@ -102,7 +93,6 @@ package org.qrencode.input
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
 		public function calcParity():Number
 		{
 			var parity:Number = 0;
@@ -118,7 +108,6 @@ package org.qrencode.input
 			return parity;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function checkModeNum(size:int, data:Array):Boolean
 		{
 			for(var i:int=0; i<size; i++) {
@@ -130,7 +119,6 @@ package org.qrencode.input
 			return true;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function estimateBitsModeNum(size:int):int
 		{
 			var w:int = size / 3;
@@ -150,7 +138,6 @@ package org.qrencode.input
 			return bits;
 		}
 		
-		//----------------------------------------------------------------------
 		public static const anTable:Array = [
 			-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 			-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -162,13 +149,11 @@ package org.qrencode.input
 			-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 		];
 		
-		//----------------------------------------------------------------------
 		public static function lookAnTable(c:int):int
 		{
 			return ((c > 127)?-1:anTable[c]);
 		}
 		
-		//----------------------------------------------------------------------
 		public static function checkModeAn(size:int, data:Array):Boolean
 		{
 			for(var i:int=0; i<size; i++) {
@@ -179,7 +164,6 @@ package org.qrencode.input
 			return true;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function estimateBitsModeAn(size:int):int
 		{
 			var w:int = size / 2;
@@ -192,19 +176,16 @@ package org.qrencode.input
 			return bits;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function estimateBitsMode8(size:int):int
 		{
 			return size * 8;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function estimateBitsModeKanji(size:int):int
 		{
 			return (size / 2) * 13;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function checkModeKanji(size:int, data:Array):Boolean
 		{
 			if(size & 1)
@@ -254,8 +235,6 @@ package org.qrencode.input
 			return false;
 		}
 		
-		
-		//----------------------------------------------------------------------
 		public function estimateBitStreamSize(version:int):int
 		{
 			var bits:int = 0;
@@ -267,7 +246,6 @@ package org.qrencode.input
 			return bits;
 		}
 		
-		//----------------------------------------------------------------------
 		public function estimateVersion():int
 		{
 			var version:int = 0;
@@ -284,7 +262,6 @@ package org.qrencode.input
 			return version;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function lengthOfCode(mode:int, version:int, bits:int):int
 		{
 			var payload:int = bits - 4 - QRSpecs.lengthIndicator(mode, version);
@@ -330,7 +307,6 @@ package org.qrencode.input
 			return size;
 		}
 		
-		//----------------------------------------------------------------------
 		public function createBitStream():int
 		{
 			var total:int = 0;
@@ -347,7 +323,6 @@ package org.qrencode.input
 			return total;
 		}
 		
-		//----------------------------------------------------------------------
 		public function convertData():int
 		{
 			var ver:int = this.estimateVersion();
@@ -375,7 +350,6 @@ package org.qrencode.input
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
 		public function appendPaddingBit(bstream:QRbitstream):QRbitstream
 		{
 			var bits:int = bstream.size;
@@ -415,7 +389,6 @@ package org.qrencode.input
 			return bstream;
 		}
 		
-		//----------------------------------------------------------------------
 		public function mergeBitStream():QRbitstream
 		{
 			if(this.convertData() < 0) {
@@ -431,7 +404,6 @@ package org.qrencode.input
 			return bstream;
 		}
 		
-		//----------------------------------------------------------------------
 		public function getBitStream():QRbitstream
 		{
 			
@@ -446,7 +418,6 @@ package org.qrencode.input
 			return bstream;
 		}
 		
-		//----------------------------------------------------------------------
 		public function getByteStream():Array
 		{
 			var bstream:QRbitstream = this.getBitStream();

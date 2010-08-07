@@ -22,9 +22,6 @@ package org.qrencode
 			
 		}
 		
-		
-		
-		//----------------------------------------------------------------------
 		public function writeFormatInformation(mask:Array , width:int, maskNo:int, level:int):int
 		{
 			var blacks:int = 0;
@@ -69,7 +66,6 @@ package org.qrencode
 			return blacks;
 		}
 		
-		//----------------------------------------------------------------------
 		public function mask0(x:Number, y:Number):int { return int( ( (x + y) & 1) == 0 );                       }
 		public function mask1(x:Number, y:Number):int { return int(y&1 == 0);                          }
 		public function mask2(x:Number, y:Number):int { return int((x % 3) == 0);                          }
@@ -79,7 +75,6 @@ package org.qrencode
 		public function mask6(x:Number, y:Number):int { return int( ( ( ( (x*y) &1 ) + ((x*y) % 3 ) ) &1 ) == 0 );       }
 		public function mask7(x:Number, y:Number):int { return int( ( ( ( (x+y) &1 ) + ((x*y) % 3 ) ) &1 ) == 0 )  }
 		
-		//----------------------------------------------------------------------
 		private function generateMaskNo(maskNo:int, width:int):Array
 		{
 			var bitMask:Array = QRUtil.array_fill(0, width, QRUtil.array_fill(0, width, 0x00));
@@ -124,7 +119,6 @@ package org.qrencode
 			return bitMask;
 		}
 		
-		//----------------------------------------------------------------------
 		public function makeMaskNo(maskNo:int, width:int, maskGenOnly:Boolean = false):Array 
 		{
 			var b:int = 0;
@@ -148,7 +142,6 @@ package org.qrencode
 			return [d,b];
 		}
 		
-		//----------------------------------------------------------------------
 		public function makeMask(width:int, maskNo:int, level:int):Array
 		{
 			var ret:Array = this.makeMaskNo(maskNo, width);
@@ -157,7 +150,6 @@ package org.qrencode
 			return ret[0];
 		}
 		
-		//----------------------------------------------------------------------
 		public function calcN1N3(length:int, runLength:Array):int
 		{
 			var demerit:int = 0;
@@ -185,7 +177,6 @@ package org.qrencode
 			return demerit;
 		}
 		
-		//----------------------------------------------------------------------
 		public function evaluateSymbol(width:int,frame:Array):int
 		{
 			var head:int = 0;
@@ -253,8 +244,6 @@ package org.qrencode
 			return demerit;
 		}
 		
-		
-		//----------------------------------------------------------------------
 		public function mask(width:int, level:int):Array
 		{
 			var minDemerit:int = int.MAX_VALUE;

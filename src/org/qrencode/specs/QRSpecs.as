@@ -15,8 +15,6 @@ package org.qrencode.specs
 		
 		public static const QRSPEC_WIDTH_MAX:int = 177;
 		
-		// Frame ---------------------------------------------------------------
-		// Cache of initial frames.
 		
 		public static var frames:Array = [];
 		
@@ -127,9 +125,7 @@ package org.qrencode.specs
 			return words;
 		}
 		
-		// Error correction code -----------------------------------------------
-		// Table of the error correction code (Reed-Solomon block)
-		// See Table 12-16 (pp.30-36), JIS X0510:2004.
+		
 		
 		public static const eccTable:ArrayCollection = new ArrayCollection([
 			[[ 0,  0], [ 0,  0], [ 0,  0], [ 0,  0]],
@@ -175,8 +171,6 @@ package org.qrencode.specs
 			[[19,  6], [18, 31], [34, 34], [20, 61]]//40
 		]);                                                                       
 		
-		//----------------------------------------------------------------------
-		// CACHEABLE!!!
 		
 		/**
 		 * Get Error correction code for a version and a level
@@ -209,14 +203,6 @@ package org.qrencode.specs
 			return spec;
 		}
 		
-		// Alignment pattern ---------------------------------------------------
-		
-		// Positions of alignment patterns.
-		// This array includes only the second and the third position of the 
-		// alignment patterns. Rest of them can be calculated from the distance 
-		// between them.
-		
-		// See Table 1 in Appendix E (pp.71) of JIS X0510:2004.
 		
 		public static const alignmentPattern:ArrayCollection = new ArrayCollection([      
 			[ 0,  0],
@@ -307,12 +293,6 @@ package org.qrencode.specs
 			return frame;
 		}
 		
-		// Version information pattern -----------------------------------------
-		
-		// Version information pattern (BCH coded).
-		// See Table 1 in Appendix D (pp.68) of JIS X0510:2004.
-		
-		// size: [QRSPEC_VERSION_MAX - 6]
 		
 		public static const versionPattern:Array = [
 			0x07c94, 0x085bc, 0x09a99, 0x0a4d3, 0x0bbf6, 0x0c762, 0x0d847, 0x0e60d,
@@ -331,8 +311,6 @@ package org.qrencode.specs
 			return versionPattern[version -7];
 		}
 		
-		// Format information --------------------------------------------------
-		// See calcFormatInfo in tests/test_qrspec.c (orginal qrencode c lib)
 		
 		public static const formatInfo:ArrayCollection = new ArrayCollection([
 			[0x77c4, 0x72f3, 0x7daa, 0x789d, 0x662f, 0x6318, 0x6c41, 0x6976],
@@ -383,7 +361,7 @@ package org.qrencode.specs
 			return frame;
 		}
 		
-		//----------------------------------------------------------------------
+		
 		public static function createFrame(version:int):Array
 		{
 			var width:int = getCapacity(version).width;
@@ -468,7 +446,6 @@ package org.qrencode.specs
 		}
 		
 		
-		//----------------------------------------------------------------------
 		public static function serial(frame:Array):ByteArray{
 			var ba:ByteArray = new ByteArray();
 			ba.writeObject(frame);
@@ -476,15 +453,13 @@ package org.qrencode.specs
 			return ba;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function unserial(code:ByteArray):Array
 		{
 			code.uncompress()
 			return code.readObject() as Array;
 		}
 		
-		//----------------------------------------------------------------------
-		public static function newFrame(version):Array{
+		public static function newFrame(version:int):Array{
 			if(version < 1 || version > QRSPEC_VERSION_MAX) 
 				return null
 			if(frames[version] == null){
@@ -496,7 +471,6 @@ package org.qrencode.specs
 			return frames[version];
 		}
 		
-		//----------------------------------------------------------------------
 		public static function rsBlockNum(spec:Array):int     { return spec[0] + spec[3]; }
 		public static function rsBlockNum1(spec:Array):int    { return spec[0]; }
 		public static function rsDataCodes1(spec:Array):int   { return spec[1]; }

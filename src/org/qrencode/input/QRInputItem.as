@@ -36,7 +36,6 @@ package org.qrencode.input
 			this.bstream = bstream;
 		}
 		
-		//----------------------------------------------------------------------
 		public function encodeModeNum(version:int):int
 		{
 			try {
@@ -73,7 +72,6 @@ package org.qrencode.input
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
 		public function encodeModeAn(version:int):int
 		{
 			try {
@@ -105,7 +103,6 @@ package org.qrencode.input
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
 		public function encodeMode8(version:int):int
 		{
 			try {
@@ -127,7 +124,6 @@ package org.qrencode.input
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
 		public function encodeModeKanji(version:int):int
 		{
 			try {
@@ -159,7 +155,6 @@ package org.qrencode.input
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
 		public function encodeModeStructure():int
 		{
 			try {
@@ -179,7 +174,6 @@ package org.qrencode.input
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
 		public function estimateBitStreamSizeOfEntry(version:int):int
 		{
 			var bits:int = 0;
@@ -216,7 +210,6 @@ package org.qrencode.input
 			return bits;
 		}
 		
-		//----------------------------------------------------------------------
 		public function encodeBitStream(version:int):int
 		{
 			try {

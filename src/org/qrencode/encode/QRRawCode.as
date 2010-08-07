@@ -12,7 +12,7 @@ package org.qrencode.encode
 	public class QRRawCode
 	{
 		public var version:int;
-		public var datacode;
+		public var datacode:Array;
 		public var ecccode:Array = [];
 		public var blocks:int;
 		public var rsblocks:ArrayCollection; //of RSblock
@@ -21,7 +21,6 @@ package org.qrencode.encode
 		public var eccLength:int;
 		public var b1:int;
 		
-		//----------------------------------------------------------------------
 		public function QRRawCode(input:QRInput){
 			rsblocks = new ArrayCollection();
 			
@@ -50,7 +49,7 @@ package org.qrencode.encode
 			this.count = 0;
 		}
 		
-		//----------------------------------------------------------------------
+
 		public function init(spec:Array):int
 		{
 			var dl:int = QRSpecs.rsDataCodes1(spec);
@@ -94,7 +93,7 @@ package org.qrencode.encode
 			return 0;
 		}
 		
-		//----------------------------------------------------------------------
+
 		public function getCode():int
 		{
 			var ret:int;

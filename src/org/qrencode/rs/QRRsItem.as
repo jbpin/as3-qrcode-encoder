@@ -23,10 +23,7 @@ package org.qrencode.rs
 		public function QRRsItem()
 		{
 		}
-			
-			
-			
-		//----------------------------------------------------------------------
+
 		public function modnn(x:int):int
 		{
 			while (x >= this.nn) {
@@ -36,8 +33,7 @@ package org.qrencode.rs
 			
 			return x;
 		}
-		
-		//----------------------------------------------------------------------
+
 		public static function init_rs_char(symsize:int, gfpoly:int, fcr:int, prim:int, nroots:int, pad:int):QRRsItem
 		{
 			// Common code for intializing a Reed-Solomon control block (char or int symbols)
@@ -126,7 +122,6 @@ package org.qrencode.rs
 			return rs;
 		}
 		
-		//----------------------------------------------------------------------
 		public function encode_rs_char(data:Array):Array
 		{
 			var rc:QRRsItem = this;

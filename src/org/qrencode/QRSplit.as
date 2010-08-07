@@ -18,7 +18,6 @@ package org.qrencode
 			this.modeHint = modeHint;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function isdigitat(str:Array, pos:int):Boolean
 		{    
 			if (pos >= str.length)
@@ -27,7 +26,6 @@ package org.qrencode
 			return ((str[pos].toString().charCodeAt() >= '0'.charCodeAt())&&(str[pos].toString().charCodeAt() <= '9'.charCodeAt()));
 		}
 		
-		//----------------------------------------------------------------------
 		public static function isalnumat(str:Array, pos:int):Boolean
 		{
 			if (pos >= str.length)
@@ -36,7 +34,6 @@ package org.qrencode
 			return (QRInput.lookAnTable(str[pos].toString().charCodeAt()) >= 0);
 		}
 		
-		//----------------------------------------------------------------------
 		public function identifyMode(pos:int):int
 		{
 			if (pos >= this.dataStr.length) 
@@ -63,7 +60,6 @@ package org.qrencode
 			return QRCodeEncodeType.QRCODE_ENCODE_BYTES;
 		} 
 		
-		//----------------------------------------------------------------------
 		public function eatNum():int
 		{
 			var ln:int = QRSpecs.lengthIndicator(QRCodeEncodeType.QRCODE_ENCODE_NUMERIC, this.input.version);
@@ -100,7 +96,6 @@ package org.qrencode
 			return run;
 		}
 		
-		//----------------------------------------------------------------------
 		public function eatAn():int
 		{
 			var la:int = QRSpecs.lengthIndicator(QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC,  this.input.version);
@@ -147,7 +142,6 @@ package org.qrencode
 			return run;
 		}
 		
-		//----------------------------------------------------------------------
 		public function eatKanji():int
 		{
 			var p:int = 0;
@@ -164,7 +158,6 @@ package org.qrencode
 			return run;
 		}
 		
-		//----------------------------------------------------------------------
 		public function eat8():int
 		{
 			var la:int = QRSpecs.lengthIndicator(QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC, this.input.version);
@@ -219,7 +212,6 @@ package org.qrencode
 			return run;
 		}
 		
-		//----------------------------------------------------------------------
 		public function splitString():int
 		{
 			while (this.dataStr.length > 0)
@@ -246,7 +238,6 @@ package org.qrencode
 			return length;
 		}
 		
-		//----------------------------------------------------------------------
 		public function toUpper():Array
 		{
 			var stringLen:int = this.dataStr.length;
@@ -267,7 +258,6 @@ package org.qrencode
 			return this.dataStr;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function splitStringToQRinput(string:String, input:QRInput, modeHint:int, casesensitive:Boolean = true):QRInput
 		{
 			if(string == null || string == '\0' || string == '') {

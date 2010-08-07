@@ -21,19 +21,16 @@ package org.qrencode.utils
 			this.bit = -1;
 		}
 		
-		//----------------------------------------------------------------------
 		public function setFrameAt(at:Point, val:Object):void
 		{
 			this.frame[at.y][at.x] = val;
 		}
 		
-		//----------------------------------------------------------------------
 		public function getFrameAt(at:Point):Object
 		{
 			return this.frame[at.y][at.x];
 		}
 		
-		//----------------------------------------------------------------------
 		public function next():Point
 		{
 			do {

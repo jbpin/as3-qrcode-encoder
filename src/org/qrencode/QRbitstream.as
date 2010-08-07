@@ -4,25 +4,23 @@ package org.qrencode
 
 	public class QRbitstream
 	{
+		
+		public var data:Array = [];
+		
 		public function QRbitstream()
 		{
 		}
-			
-		public var data:Array = [];
 		
-		//----------------------------------------------------------------------
 		public function get size():int
 		{
 			return this.data.length;
 		}
 		
-		//----------------------------------------------------------------------
 		public function allocate(setLength:int):void
 		{
 			this.data = QRUtil.array_fill(0, setLength, 0x00);
 		}
 		
-		//----------------------------------------------------------------------
 		public static function newFromNum(bits:Number, num:Number):QRbitstream
 		{
 			var bstream:QRbitstream = new QRbitstream();
@@ -41,7 +39,6 @@ package org.qrencode
 			return bstream;
 		}
 		
-		//----------------------------------------------------------------------
 		public static function newFromBytes(size:int, data:Array):QRbitstream
 		{
 			var bstream:QRbitstream = new QRbitstream();
@@ -64,7 +61,6 @@ package org.qrencode
 			return bstream;
 		}
 		
-		//----------------------------------------------------------------------
 		public function append(arg:QRbitstream):void
 		{
 			if (arg == null) {
@@ -83,7 +79,6 @@ package org.qrencode
 			QRUtil.array_merge(this.data,arg.data);
 		}
 		
-		//----------------------------------------------------------------------
 		public function appendNum(bits:Number, num:Number):void
 		{
 			if (bits == 0) 
@@ -97,7 +92,6 @@ package org.qrencode
 			this.append(b);
 		}
 		
-		//----------------------------------------------------------------------
 		public function appendBytes(size:int, data:Array):void
 		{
 			if (size == 0) 
@@ -111,7 +105,6 @@ package org.qrencode
 			this.append(b);
 		}
 		
-		//----------------------------------------------------------------------
 		public function toByte():Array
 		{
 			

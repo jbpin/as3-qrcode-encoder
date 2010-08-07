@@ -51,10 +51,8 @@ package org.qrencode.utils
 		}
 		
 		
-		//QRrs
 		public static var items:Array = [];
 		
-		//----------------------------------------------------------------------
 		public static function initRs(symsize:int, gfpoly:int, fcr:int, prim:int, nroots:int, pad:int):QRRsItem
 		{
 			for each(var rs:QRRsItem in items) {
