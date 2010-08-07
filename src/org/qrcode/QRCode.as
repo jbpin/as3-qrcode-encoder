@@ -1,17 +1,17 @@
-package org.qrencode
+package org.qrcode
 {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 	
 	import mx.collections.ArrayCollection;
 	
-	import org.qrencode.encode.QRRawCode;
-	import org.qrencode.enum.QRCodeEncodeType;
-	import org.qrencode.enum.QRCodeErrorLevel;
-	import org.qrencode.input.QRInput;
-	import org.qrencode.specs.QRSpecs;
-	import org.qrencode.utils.FrameFiller;
-	import org.qrencode.utils.QRCodeTool;
+	import org.qrcode.encode.QRRawCode;
+	import org.qrcode.enum.QRCodeEncodeType;
+	import org.qrcode.enum.QRCodeErrorLevel;
+	import org.qrcode.input.QRInput;
+	import org.qrcode.specs.QRSpecs;
+	import org.qrcode.utils.FrameFiller;
+	import org.qrcode.utils.QRCodeTool;
 
 	public class QRCode
 	{
