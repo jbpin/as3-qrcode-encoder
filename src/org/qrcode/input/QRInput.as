@@ -1,8 +1,6 @@
 package org.qrcode.input
 {
 	
-	import mx.collections.ArrayCollection;
-	
 	import org.qrcode.QRbitstream;
 	import org.qrcode.enum.QRCodeEncodeType;
 	import org.qrcode.enum.QRCodeErrorLevel;
@@ -10,7 +8,7 @@ package org.qrcode.input
 
 	public class QRInput
 	{		
-		public var items:ArrayCollection;
+		public var items:Array;
 		
 		private var _version:int;
 		private var _level:int;
@@ -21,7 +19,7 @@ package org.qrcode.input
 				throw new Error('Invalid version no');
 				return null;
 			}
-			this.items = new ArrayCollection();
+			this.items = [];
 			this._version = qrversion;
 			this._level = qrlevel;
 		}
@@ -63,7 +61,7 @@ package org.qrcode.input
 		{
 			try {
 				var entry:QRInputItem = new QRInputItem(mode, size, data);
-				this.items.addItem(entry);
+				this.items.push(entry);
 				return 0;
 			} catch (e:Error) {
 				return -1;
@@ -85,7 +83,7 @@ package org.qrcode.input
 			
 			try {
 				var entry:QRInputItem = new QRInputItem(QRCodeEncodeType.QRCODE_ENCODE_STRUCTURE, 3, buf);
-				this.items.addItemAt(entry,0);
+				this.items.unshift(entry);
 				return 0;
 			} catch (e:Error) {
 				return -1;

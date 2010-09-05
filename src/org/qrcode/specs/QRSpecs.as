@@ -3,7 +3,6 @@ package org.qrcode.specs
 	
 	import flash.utils.ByteArray;
 	
-	import mx.collections.ArrayCollection;
 	
 	import org.qrcode.enum.QRCodeEncodeType;
 	import org.qrcode.utils.QRUtil;
@@ -70,12 +69,12 @@ package org.qrcode.specs
 		///     Length indicator          ///
 		///-------------------------------///
 		
-		public static const lengthTableBits:ArrayCollection = new ArrayCollection([
+		public static const lengthTableBits:Array = [
 			[10, 12, 14],
 			[ 9, 11, 13],
 			[ 8, 16, 16],
 			[ 8, 10, 12]
-		]);
+		];
 		
 		/**
 		 * return lenght indicator
@@ -127,7 +126,7 @@ package org.qrcode.specs
 		
 		
 		
-		public static const eccTable:ArrayCollection = new ArrayCollection([
+		public static const eccTable:Array = [
 			[[ 0,  0], [ 0,  0], [ 0,  0], [ 0,  0]],
 			[[ 1,  0], [ 1,  0], [ 1,  0], [ 1,  0]], // 1
 			[[ 1,  0], [ 1,  0], [ 1,  0], [ 1,  0]],
@@ -169,7 +168,7 @@ package org.qrcode.specs
 			[[ 4, 18], [13, 32], [48, 14], [42, 32]],
 			[[20,  4], [40,  7], [43, 22], [10, 67]],
 			[[19,  6], [18, 31], [34, 34], [20, 61]]//40
-		]);                                                                       
+		];                                                                       
 		
 		
 		/**
@@ -204,7 +203,7 @@ package org.qrcode.specs
 		}
 		
 		
-		public static const alignmentPattern:ArrayCollection = new ArrayCollection([      
+		public static const alignmentPattern:Array = [      
 			[ 0,  0],
 			[ 0,  0], [18,  0], [22,  0], [26,  0], [30,  0], // 1- 5
 			[34,  0], [22, 38], [24, 42], [26, 46], [28, 50], // 6-10
@@ -214,7 +213,7 @@ package org.qrcode.specs
 			[30, 58], [34, 62], [26, 50], [30, 54], [26, 52], //26-30
 			[30, 56], [34, 60], [30, 58], [34, 62], [30, 54], //31-35
 			[24, 50], [28, 54], [32, 58], [26, 54], [30, 58], //35-40
-		]);                                                                                  
+		];                                                                                  
 		
 		
 		/** --------------------------------------------------------------------
@@ -312,12 +311,12 @@ package org.qrcode.specs
 		}
 		
 		
-		public static const formatInfo:ArrayCollection = new ArrayCollection([
+		public static const formatInfo:Array = [
 			[0x77c4, 0x72f3, 0x7daa, 0x789d, 0x662f, 0x6318, 0x6c41, 0x6976],
 			[0x5412, 0x5125, 0x5e7c, 0x5b4b, 0x45f9, 0x40ce, 0x4f97, 0x4aa0],
 			[0x355f, 0x3068, 0x3f31, 0x3a06, 0x24b4, 0x2183, 0x2eda, 0x2bed],
 			[0x1689, 0x13be, 0x1ce7, 0x19d0, 0x0762, 0x0255, 0x0d0c, 0x083b]
-		]);
+		];
 		
 		public static function getFormatInfo(mask:int, level:int):uint
 		{

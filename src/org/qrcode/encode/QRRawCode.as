@@ -1,6 +1,5 @@
 package org.qrcode.encode
 {
-	import mx.collections.ArrayCollection;
 	
 	import org.qrcode.input.QRInput;
 	import org.qrcode.rs.QRRsBlock;
@@ -15,14 +14,14 @@ package org.qrcode.encode
 		public var datacode:Array;
 		public var ecccode:Array = [];
 		public var blocks:int;
-		public var rsblocks:ArrayCollection; //of RSblock
+		public var rsblocks:Array; //of RSblock
 		public var count:int;
 		public var dataLength:int;
 		public var eccLength:int;
 		public var b1:int;
 		
 		public function QRRawCode(input:QRInput){
-			rsblocks = new ArrayCollection();
+			rsblocks = [];
 			
 			var spec:Array = [0,0,0,0,0];
 			
@@ -62,7 +61,7 @@ package org.qrcode.encode
 			var blockNo:int = 0;
 			for(var i:int=0; i<QRSpecs.rsBlockNum1(spec); i++) {
 				var ecc:Array = this.ecccode.slice(eccPos);
-				this.rsblocks.addItemAt(new QRRsBlock(dl, this.datacode.slice(dataPos), el,  ecc, rs),i);
+				this.rsblocks[i] = new QRRsBlock(dl, this.datacode.slice(dataPos), el,  ecc, rs);
 				ecc = rs.encode_rs_char((rsblocks[i] as QRRsBlock).data);
 				(rsblocks[i] as QRRsBlock).ecc = ecc;
 				this.ecccode = QRUtil.array_merge(this.ecccode.slice(0, eccPos), ecc);
@@ -82,7 +81,7 @@ package org.qrcode.encode
 			
 			for(var i:int=0; i<QRSpecs.rsBlockNum2(spec); i++) {
 				ecc = this.ecccode.slice(eccPos);
-				this.rsblocks.addItemAt(new QRRsBlock(dl, this.datacode.slice(dataPos), el, ecc, rs),blockNo);
+				this.rsblocks.push(new QRRsBlock(dl, this.datacode.slice(dataPos), el, ecc, rs),blockNo);
 				this.ecccode = QRUtil.array_merge(this.ecccode.slice(0, eccPos), ecc);
 				
 				dataPos += dl;

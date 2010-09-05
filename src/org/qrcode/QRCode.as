@@ -3,7 +3,6 @@ package org.qrcode
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 	
-	import mx.collections.ArrayCollection;
 	
 	import org.qrcode.encode.QRRawCode;
 	import org.qrcode.enum.QRCodeEncodeType;
@@ -20,7 +19,6 @@ package org.qrcode
 		private var level:int;
 		private var type:int;
 		private var version:int = 1;
-		private var items:ArrayCollection;
 		private var width:int;
 		
 		private var text:String;

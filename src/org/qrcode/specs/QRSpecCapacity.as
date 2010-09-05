@@ -1,11 +1,10 @@
 package org.qrcode.specs
 {
-	import mx.collections.ArrayCollection;
 
 	public class QRSpecCapacity
 	{
 		
-		private static const capacity:ArrayCollection = new ArrayCollection([
+		private static const capacity:Array = [
 			[  0,    0, 0, [   0,    0,    0,    0]],
 			[ 21,   26, 0, [   7,   10,   13,   17]], // 1
 			[ 25,   44, 7, [  10,   16,   22,   28]],
@@ -47,7 +46,7 @@ package org.qrcode.specs
 			[169, 3362, 0, [ 660, 1260, 1860, 2220]],
 			[173, 3532, 0, [ 720, 1316, 1950, 2310]],
 			[177, 3706, 0, [ 750, 1372, 2040, 2430]] //40]
-		]);
+		];
 		
 		/**
 		 * Edge length of the symbol
