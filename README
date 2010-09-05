@@ -9,4 +9,8 @@ var bitMap:Bitmap = new Bitmap(qr.bitmapData);
 That is just the first version of the library, I will try to optimize it and fixing some problem soon as possible..
 The choice to just provide a bitmap data object has been made to allow you to display the qrcode or to encoding it and save it to a png or jpeg file.
 
+A flash demo:
+
+import flash.display.Sprite;import org.qrcode.QRCode;import flash.display.Bitmap;var sp:Sprite = new Sprite();var qr:QRCode = new QRCode();qr.encode("TEST");var img:Bitmap = new Bitmap(qr.bitmapData);sp.addChild(img);addChild(sp);
+
 The project is under MIT License. 
