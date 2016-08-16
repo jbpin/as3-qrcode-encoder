@@ -81,7 +81,7 @@ package org.qrcode
 		
 		public function appendNum(bits:Number, num:Number):void
 		{
-			if (bits == 0) 
+			if (bits == 0)
 				return;
 			
 			var b:QRbitstream = QRbitstream.newFromNum(bits, num);
@@ -94,7 +94,7 @@ package org.qrcode
 		
 		public function appendBytes(size:int, data:Array):void
 		{
-			if (size == 0) 
+			if (size == 0)
 				return;
 			
 			var b:QRbitstream = QRbitstream.newFromBytes(size, data);
@@ -131,7 +131,7 @@ package org.qrcode
 			
 			if(size & 7) {
 				v = 0x00;
-				for(var j:int=0; j<(size & 7); j++) {
+				for(j=0; j<(size & 7); j++) {
 					v = v << 1;
 					v |= this.data[p];
 					p++;

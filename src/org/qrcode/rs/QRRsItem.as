@@ -8,16 +8,16 @@ package org.qrcode.rs
 		private static var A0:uint;
 		private static var NN:uint;
 		
-		public var mm:uint;                  // Bits per symbol 
-		public var nn:uint;                  // Symbols per block (= (1<<mm)-1) 
-		public var alpha_to:Array = [];  // log lookup table 
-		public var index_of:Array = [];  // Antilog lookup table 
-		public var genpoly:Array = [];   // Generator polynomial 
-		public var nroots:uint;              // Number of generator roots = number of parity symbols 
-		public var fcr:uint;                 // First consecutive root, index form 
-		public var prim:uint;                // Primitive element, index form 
-		public var iprim:uint;               // prim-th root of 1, index form 
-		public var pad:uint;                 // Padding bytes in shortened block 
+		public var mm:uint;                  // Bits per symbol
+		public var nn:uint;                  // Symbols per block (= (1<<mm)-1)
+		public var alpha_to:Array = [];  // log lookup table
+		public var index_of:Array = [];  // Antilog lookup table
+		public var genpoly:Array = [];   // Generator polynomial
+		public var nroots:uint;              // Number of generator roots = number of parity symbols
+		public var fcr:uint;                 // First consecutive root, index form
+		public var prim:uint;                // Primitive element, index form
+		public var iprim:uint;               // prim-th root of 1, index form
+		public var pad:uint;                 // Padding bytes in shortened block
 		public var gfpoly:uint;
 		
 		public function QRRsItem()
@@ -100,7 +100,8 @@ package org.qrcode.rs
 			rs.iprim = int(iprim / prim);
 			rs.genpoly[0] = 1;
 			
-			for (var i:int = 0,root=fcr*prim; i < nroots; i++, root += prim) {
+			var root:Number;
+			for (i = 0,root=fcr*prim; i < nroots; i++, root += prim) {
 				rs.genpoly[i+1] = 1;
 				
 				// Multiply rs.genpoly[] by  @**(root + x)
@@ -116,7 +117,7 @@ package org.qrcode.rs
 			}
 			
 			// convert rs.genpoly[] to index form for quicker encoding
-			for (var i:int = 0; i <= nroots; i++)
+			for (i = 0; i <= nroots; i++)
 				rs.genpoly[i] = rs.index_of[rs.genpoly[i]];
 			
 			return rs;
@@ -132,7 +133,7 @@ package org.qrcode.rs
 			for(var i:int=0; i< (rc.nn-rc.nroots-rc.pad); i++) {
 				
 				var feedback:int = rc.index_of[data[i] ^ parity[0]];
-				if(feedback != a0) {      
+				if(feedback != a0) {
 					// feedback term is non-zero
 					
 					// This line is unnecessary when GENPOLY[NROOTS] is unity, as it must
@@ -144,7 +145,7 @@ package org.qrcode.rs
 					}
 				}
 				
-				// Shift 
+				// Shift
 				parity.shift();
 				if(feedback != this.nn) {
 					parity.push(rc.alpha_to[this.modnn(feedback + rc.genpoly[0])]);

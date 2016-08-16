@@ -19,7 +19,7 @@ package org.qrcode
 		}
 		
 		public static function isdigitat(str:Array, pos:int):Boolean
-		{    
+		{
 			if (pos >= str.length)
 				return false;
 			
@@ -36,7 +36,7 @@ package org.qrcode
 		
 		public function identifyMode(pos:int):int
 		{
-			if (pos >= this.dataStr.length) 
+			if (pos >= this.dataStr.length)
 				return -1;
 			
 			var c:String = this.dataStr[pos];
@@ -47,7 +47,7 @@ package org.qrcode
 				return QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC;
 			} else if(this.modeHint == QRCodeEncodeType.QRCODE_ENCODE_KANJI) {
 				
-				if (pos+1 < this.dataStr.length) 
+				if (pos+1 < this.dataStr.length)
 				{
 					var d:String = this.dataStr[pos+1];
 					var word:int = (c.charCodeAt() << 8) | d.charCodeAt();
@@ -58,7 +58,7 @@ package org.qrcode
 			}
 			
 			return QRCodeEncodeType.QRCODE_ENCODE_BYTES;
-		} 
+		}
 		
 		public function eatNum():int
 		{
@@ -81,7 +81,7 @@ package org.qrcode
 				}
 			}
 			if(mode == QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC) {
-				var dif:int = QRInput.estimateBitsModeNum(run) + 4 + ln
+				dif = QRInput.estimateBitsModeNum(run) + 4 + ln
 					+ QRInput.estimateBitsModeAn(1)        // + 4 + la
 					- QRInput.estimateBitsModeAn(run + 1);// - 4 - la
 				if(dif > 0) {
@@ -127,7 +127,7 @@ package org.qrcode
 			var run:int = p;
 			
 			if(!isalnumat(this.dataStr, p)) {
-				var dif:int = QRInput.estimateBitsModeAn(run) + 4 + la
+				dif = QRInput.estimateBitsModeAn(run) + 4 + la
 					+ QRInput.estimateBitsMode8(1) // + 4 + l8
 					- QRInput.estimateBitsMode8(run + 1); // - 4 - l8
 				if(dif > 0) {
@@ -186,11 +186,11 @@ package org.qrcode
 						p = q;
 					}
 				} else if(mode == QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC) {
-					var q:int = p;
+					q = p;
 					while(isalnumat(this.dataStr, q)) {
 						q++;
 					}
-					var dif:int = QRInput.estimateBitsMode8(p)  // + 4 + l8
+					dif = QRInput.estimateBitsMode8(p)  // + 4 + l8
 						+ QRInput.estimateBitsModeAn(q - p) + 4 + la
 						- QRInput.estimateBitsMode8(q); // - 4 - l8
 					if(dif < 0) {

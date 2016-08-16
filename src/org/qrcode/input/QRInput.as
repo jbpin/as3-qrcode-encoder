@@ -7,7 +7,7 @@ package org.qrcode.input
 	import org.qrcode.specs.QRSpecs;
 
 	public class QRInput
-	{		
+	{
 		public var items:Array;
 		
 		private var _version:int;
@@ -17,7 +17,6 @@ package org.qrcode.input
 		{
 			if (qrversion < 0 || qrversion > QRSpecs.QRSPEC_VERSION_MAX || qrlevel > QRCodeErrorLevel.QRCODE_ERROR_LEVEL_HIGH) {
 				throw new Error('Invalid version no');
-				return null;
 			}
 			this.items = [];
 			this._version = qrversion;
@@ -191,8 +190,8 @@ package org.qrcode.input
 			
 			for(var i:int=0; i<size; i+=2) {
 				var val:int = (data[i] << 8) | data[i+1];
-				if( val < 0x8140 
-					|| (val > 0x9ffc && val < 0xe040) 
+				if( val < 0x8140
+					|| (val > 0x9ffc && val < 0xe040)
 					|| val > 0xebbf) {
 					return false;
 				}
@@ -207,14 +206,14 @@ package org.qrcode.input
 		
 		public static function check(mode:int, size:int, data:Array):Boolean
 		{
-			if(size <= 0) 
+			if(size <= 0)
 				return false;
 			
 			switch(mode) {
 				case QRCodeEncodeType.QRCODE_ENCODE_NUMERIC:
-					return checkModeNum(size, data);   
+					return checkModeNum(size, data);
 				break;
-				case QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC: 
+				case QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC:
 					return checkModeAn(size, data);
 				break;
 				case QRCodeEncodeType.QRCODE_ENCODE_KANJI:
@@ -281,7 +280,7 @@ package org.qrcode.input
 					chunks = payload / 11;
 					remain = payload - chunks * 11;
 					size = chunks * 2;
-					if(remain >= 6) 
+					if(remain >= 6)
 						size++;
 					break;
 				case QRCodeEncodeType.QRCODE_ENCODE_BYTES:
@@ -312,7 +311,7 @@ package org.qrcode.input
 			for each(var item:QRInputItem in this.items) {
 				var bits:int = item.encodeBitStream(this.version);
 				
-				if(bits < 0) 
+				if(bits < 0)
 					return -1;
 				
 				total += bits;
@@ -331,7 +330,7 @@ package org.qrcode.input
 			for(;;) {
 				var bits:int = this.createBitStream();
 				
-				if(bits < 0) 
+				if(bits < 0)
 					return -1;
 				
 				ver = QRSpecs.getMinimumVersion((bits + 7) / 8, _level);

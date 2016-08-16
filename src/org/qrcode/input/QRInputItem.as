@@ -17,7 +17,7 @@ package org.qrcode.input
 		public var data:Array;
 		public var bstream:QRbitstream;
 		
-		public function QRInputItem(mode:int, size:int, data:Array, bstream:QRbitstream = null) 
+		public function QRInputItem(mode:int, size:int, data:Array, bstream:QRbitstream = null)
 		{
 			var setData:Array =  data.slice(0,size);
 			
@@ -27,7 +27,6 @@ package org.qrcode.input
 			
 			if(!QRInput.check(mode, size, setData)) {
 				throw new Error('Error m:'+mode+',s:'+size+',d:'+setData.join(','));
-				return null;
 			}
 			
 			this.mode = mode;
@@ -90,7 +89,7 @@ package org.qrcode.input
 				}
 				
 				if(this.size & 1) {
-					var val:int = QRInput.lookAnTable(this.data[words * 2].toString().charCodeAt());
+					val = QRInput.lookAnTable(this.data[words * 2].toString().charCodeAt());
 					bs.appendNum(6, val);
 				}
 				
@@ -178,13 +177,12 @@ package org.qrcode.input
 		{
 			var bits:int = 0;
 			
-			if(version == 0) 
+			if(version == 0)
 				version = 1;
 			
-			var bits:int;
 			switch(this.mode) {
 				case QRCodeEncodeType.QRCODE_ENCODE_NUMERIC:
-					bits = QRInput.estimateBitsModeNum(this.size);    
+					bits = QRInput.estimateBitsModeNum(this.size);
 				break;
 				case QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC:
 					bits = QRInput.estimateBitsModeAn(this.size);
@@ -196,7 +194,7 @@ package org.qrcode.input
 					bits = QRInput.estimateBitsModeKanji(this.size);
 				break;
 				case QRCodeEncodeType.QRCODE_ENCODE_STRUCTURE:
-					return STRUCTURE_HEADER_BITS;            
+					return STRUCTURE_HEADER_BITS;
 				default:
 					return 0;
 			}
@@ -236,18 +234,18 @@ package org.qrcode.input
 					
 					switch(this.mode) {
 						case QRCodeEncodeType.QRCODE_ENCODE_NUMERIC:
-							ret = this.encodeModeNum(version);    
+							ret = this.encodeModeNum(version);
 							break;
 						case QRCodeEncodeType.QRCODE_ENCODE_ALPHA_NUMERIC:
 							ret = this.encodeModeAn(version);
 							break;
 						case QRCodeEncodeType.QRCODE_ENCODE_BYTES:
-							ret = this.encodeMode8(version); 
+							ret = this.encodeMode8(version);
 							break;
 						case QRCodeEncodeType.QRCODE_ENCODE_KANJI:
 							ret = this.encodeModeKanji(version);
 						case QRCodeEncodeType.QRCODE_ENCODE_STRUCTURE:
-							ret = this.encodeModeStructure();            
+							ret = this.encodeModeStructure();
 						default:
 							return 0;
 					}
