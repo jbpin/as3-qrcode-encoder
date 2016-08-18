@@ -43,7 +43,7 @@ package org.qrcode
 				format = format >> 1;
 			}
 			
-			for(var i:int=0; i<7; i++) {
+			for(i=0; i<7; i++) {
 				if(format & 1) {
 					blacks += 2;
 					v = 0x85;
@@ -65,7 +65,7 @@ package org.qrcode
 		}
 		
 		public function mask0(x:Number, y:Number):int { return int( ( (x + y) & 1) == 0 );                       }
-		public function mask1(x:Number, y:Number):int { return int(y&1 == 0);                          }
+		public function mask1(x:Number, y:Number):int { return int((y&1) == 0);                          }
 		public function mask2(x:Number, y:Number):int { return int((x % 3) == 0);                          }
 		public function mask3(x:Number, y:Number):int { return int((x+y)%3 == 0);                       }
 		public function mask4(x:Number, y:Number):int { return int( ( (int(y*0.5) + int(x/3)) &1) == 0 )}
@@ -117,7 +117,7 @@ package org.qrcode
 			return bitMask;
 		}
 		
-		public function makeMaskNo(maskNo:int, width:int, maskGenOnly:Boolean = false):Array 
+		public function makeMaskNo(maskNo:int, width:int, maskGenOnly:Boolean = false):Array
 		{
 			var b:int = 0;
 			var bitMask:Array = [];
@@ -196,7 +196,7 @@ package org.qrcode
 						var b22:Number = frameY[x] & frameY[x-1] & frameYM[x] & frameYM[x-1];
 						var w22:Number = frameY[x] | frameY[x-1] | frameYM[x] | frameYM[x-1];
 						
-						if((b22 | (w22 ^ 1))&1) {                                                                     
+						if((b22 | (w22 ^ 1))&1) {
 							demerit += N2;
 						}
 					}
@@ -217,11 +217,11 @@ package org.qrcode
 				demerit += this.calcN1N3(head+1,runLength);
 			}
 			
-			for(var x:int=0; x<width; x++) {
+			for(x=0; x<width; x++) {
 				head = 0;
 				runLength[0] = 1;
 				
-				for(var y:int=0; y<width; y++) {
+				for(y=0; y<width; y++) {
 					if(y == 0 && (frame[y][x] & 1)) {
 						runLength[0] = -1;
 						head = 1;

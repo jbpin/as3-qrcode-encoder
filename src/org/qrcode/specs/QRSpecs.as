@@ -23,42 +23,42 @@ package org.qrcode.specs
 		}
 		
 		/**
-		 * return the data lenght for a given version 
-		 */ 
-		public static function getDataLength(version:int, level:int):int{			
+		 * return the data lenght for a given version
+		 */
+		public static function getDataLength(version:int, level:int):int{
 			var qrcap:QRSpecCapacity = getCapacity(version);
 			return qrcap.words - qrcap.ec[level];
 		}
 		
 		/**
 		 * Get ecc length form version and level
-		 */ 
+		 */
 		public static function getECCLength(version:int, level:int):int{
 			return getCapacity(version).ec[level];;
 		}
 		
 		/**
 		 * Get Edge length of the symbol from version
-		 */ 
+		 */
 		public static function getWidth(version:int):int{
 			return getCapacity(version).width;
 		}
 		
 		/**
 		 * get Remainder form version
-		 */ 
+		 */
 		public static function getRemainder(version:int):Number{
 			return getCapacity(version).remainder;
 		}
 		
 		/**
 		 * Get the miminum version regarding the level and the size
-		 */ 
+		 */
 		public static function getMinimumVersion(size:int, level:int):int{
 			for(var i:int=1; i<= QRSPEC_VERSION_MAX; i++) {
 				var cp:QRSpecCapacity = getCapacity(i);
 				var words:int  = cp.words - cp.ec[level];
-				if(words >= size) 
+				if(words >= size)
 					return i;
 			}
 			
@@ -81,7 +81,7 @@ package org.qrcode.specs
 		 * @param mode int QREncodeType value
 		 * @param version int the version of qrcode
 		 * @return int the length indicator
-		 */ 
+		 */
 		public static function lengthIndicator(mode:int, version:int):int
 		{
 			if (mode == QRCodeEncodeType.QRCODE_ENCODE_STRUCTURE)
@@ -100,10 +100,10 @@ package org.qrcode.specs
 		
 		/**
 		 * Return the maximum data capacity for a mode and a version
-		 */ 
+		 */
 		public static function maximumWords(mode:int, version:int):int
 		{
-			if(mode ==QRCodeEncodeType.QRCODE_ENCODE_STRUCTURE) 
+			if(mode ==QRCodeEncodeType.QRCODE_ENCODE_STRUCTURE)
 				return 3;
 			var l:int;
 			if(version <= 9) {
@@ -168,13 +168,13 @@ package org.qrcode.specs
 			[[ 4, 18], [13, 32], [48, 14], [42, 32]],
 			[[20,  4], [40,  7], [43, 22], [10, 67]],
 			[[19,  6], [18, 31], [34, 34], [20, 61]]//40
-		];                                                                       
+		];
 		
 		
 		/**
 		 * Get Error correction code for a version and a level
 		 * @return the array spec
-		 */ 
+		 */
 		public static function getEccSpec(version:int, level:int, spec:Array=null):Array
 		{
 			if (spec == null || spec.length < 5) {
@@ -190,7 +190,7 @@ package org.qrcode.specs
 				spec[0] = b1;
 				spec[1] = (data / b1) as int;
 				spec[2] = (ecc / b1) as int;
-				spec[3] = 0; 
+				spec[3] = 0;
 				spec[4] = 0;
 			} else {
 				spec[0] = b1;
@@ -203,7 +203,7 @@ package org.qrcode.specs
 		}
 		
 		
-		public static const alignmentPattern:Array = [      
+		public static const alignmentPattern:Array = [
 			[ 0,  0],
 			[ 0,  0], [18,  0], [22,  0], [26,  0], [30,  0], // 1- 5
 			[34,  0], [22, 38], [24, 42], [26, 46], [28, 50], // 6-10
@@ -213,7 +213,7 @@ package org.qrcode.specs
 			[30, 58], [34, 62], [26, 50], [30, 54], [26, 52], //26-30
 			[30, 56], [34, 60], [30, 58], [34, 62], [30, 54], //31-35
 			[24, 50], [28, 54], [32, 58], [26, 54], [30, 58], //35-40
-		];                                                                                  
+		];
 		
 		
 		/** --------------------------------------------------------------------
@@ -226,7 +226,7 @@ package org.qrcode.specs
 		public static function putAlignmentMarker(frame:Array, ox:int, oy:int):Array
 		{
 			
-			var finder:Vector.<uint> = new Vector.<uint>(); 
+			var finder:Vector.<uint> = new Vector.<uint>();
 			finder.push(
 				0xa1, 0xa1, 0xa1, 0xa1, 0xa1,
 				0xa1, 0xa0, 0xa0, 0xa0, 0xa1,
@@ -250,7 +250,7 @@ package org.qrcode.specs
 		
 		/**
 		 * put Alignement pattern in the frame
-		 */ 
+		 */
 		public static function putAlignmentPattern(version:int, frame:Array, width:int):Array
 		{
 			if(version < 2)
@@ -274,16 +274,16 @@ package org.qrcode.specs
 			}
 			
 			var cx:int = alignmentPattern[version][0];
-			for(var x:int=1; x< w - 1; x++) {
+			for(x=1; x< w - 1; x++) {
 				frame = putAlignmentMarker(frame, 6, cx);
 				frame = putAlignmentMarker(frame, cx,  6);
 				cx += d;
 			}
 			
 			var cy:int = alignmentPattern[version][0];
-			for(var y:int=0; y<w-1; y++) {
+			for(y=0; y<w-1; y++) {
 				cx = alignmentPattern[version][0];
-				for(var x:int=0; x<w-1; x++) {
+				for(x=0; x<w-1; x++) {
 					frame = putAlignmentMarker(frame, cx, cy);
 					cx += d;
 				}
@@ -324,7 +324,7 @@ package org.qrcode.specs
 				return 0;
 			
 			if(level < 0 || level > 3)
-				return 0;                
+				return 0;
 			
 			return formatInfo[level][mask];
 		}
@@ -346,7 +346,7 @@ package org.qrcode.specs
 				0xc1, 0xc0, 0xc1, 0xc1, 0xc1, 0xc0, 0xc1,
 				0xc1, 0xc0, 0xc0, 0xc0, 0xc0, 0xc0, 0xc1,
 				0xc1, 0xc1, 0xc1, 0xc1, 0xc1, 0xc1, 0xc1,
-			];                            
+			];
 			
 			var finderpos:int = 0;
 			
@@ -402,43 +402,43 @@ package org.qrcode.specs
 			frame = QRUtil.memset(frame, 8 ,0, 0x84, 9);
 			frame = QRUtil.memset(frame, 8 ,width-8, 0x84, 8);
 			
-			for(var y:int=0; y<8; y++,yOffset++) {
+			for(y=0; y<8; y++,yOffset++) {
 				frame[y][8] = 0x84;
 				frame[yOffset][8] = 0x84;
 			}
 			
-			// Timing pattern  
+			// Timing pattern
 			
 			for(var i:int=1; i<width-15; i++) {
 				frame[6][7+i] = 0x90 | (i & 1);
 				frame[7+i][6] = 0x90 | (i & 1);
 			}
 			
-			// Alignment pattern  
+			// Alignment pattern
 			frame = putAlignmentPattern(version, frame, width);
 			
-			// Version information 
+			// Version information
 			if(version >= 7) {
 				var vinf:int = getVersionPattern(version);;
 				
 				var v:int = vinf;
 				
 				for(var x:int=0; x<6; x++) {
-					for(var y:int=0; y<3; y++) {
+					for(y=0; y<3; y++) {
 						frame[(width - 11)+y][x] = 0x88 | (v & 1);
 						v = v >> 1;
 					}
 				}
 				
 				v = vinf;
-				for(var y:int=0; y<6; y++) {
-					for(var x:int=0; x<3; x++) {
+				for(y=0; y<6; y++) {
+					for(x=0; x<3; x++) {
 						frame[y][x+(width - 11)] = 0x88 | (v & 1);
 						v = v >> 1;
 					}
 				}
 			}
-			// and a little bit...  
+			// and a little bit...
 			frame[width - 8][8] = 0x81;
 			
 			return frame;
@@ -459,7 +459,7 @@ package org.qrcode.specs
 		}
 		
 		public static function newFrame(version:int):Array{
-			if(version < 1 || version > QRSPEC_VERSION_MAX) 
+			if(version < 1 || version > QRSPEC_VERSION_MAX)
 				return null
 			if(frames[version] == null){
 				frames[version] = createFrame(version);

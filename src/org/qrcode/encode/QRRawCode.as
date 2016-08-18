@@ -42,7 +42,6 @@ package org.qrcode.encode
 			var ret:int = this.init(spec);
 			if(ret < 0) {
 				throw new Error('block alloc error');
-				return null;
 			}
 			
 			this.count = 0;
@@ -79,7 +78,7 @@ package org.qrcode.encode
 			
 			if(rs == null) return -1;
 			
-			for(var i:int=0; i<QRSpecs.rsBlockNum2(spec); i++) {
+			for(i=0; i<QRSpecs.rsBlockNum2(spec); i++) {
 				ecc = this.ecccode.slice(eccPos);
 				this.rsblocks.push(new QRRsBlock(dl, this.datacode.slice(dataPos), el, ecc, rs),blockNo);
 				this.ecccode = QRUtil.array_merge(this.ecccode.slice(0, eccPos), ecc);

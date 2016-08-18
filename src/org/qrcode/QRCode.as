@@ -50,7 +50,7 @@ package org.qrcode
 			}
 			
 			var input:QRInput = new QRInput(version, level);
-			if(input == null) 
+			if(input == null)
 				return;
 			
 			input = QRSplit.splitStringToQRinput(text, input, type, casesensitive);
@@ -83,7 +83,7 @@ package org.qrcode
 				return null;
 			}
 			
-			 
+			
 			// inteleaved data and ecc codes
 			for(var i:int=0; i<raw.dataLength + raw.eccLength; i++) {
 				var code:int = raw.getCode();
@@ -97,9 +97,9 @@ package org.qrcode
 			
 			
 			// remainder bits
-			var j:int = QRSpecs.getRemainder(version);
-			for(var i:int=0; i<j; i++) {
-				var addr:Point = filler.next();				
+			j = QRSpecs.getRemainder(version);
+			for(i=0; i<j; i++) {
+				addr = filler.next();
 				filler.setFrameAt(addr, 0x02);
 			}
 			frame = filler.frame;
